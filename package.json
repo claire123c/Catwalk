@@ -1,0 +1,29 @@
+{
+  "name": "products",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server",
+    "seed:schema": "psql postgres < schema.sql"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charismatic-cannolis/Products.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/charismatic-cannolis/Products/issues"
+  },
+  "homepage": "https://github.com/charismatic-cannolis/Products#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.14",
+    "node-postgres": "^0.6.2",
+    "nodemon": "^2.0.7",
+    "pg-promise": "^10.10.2"
+  }
+}
