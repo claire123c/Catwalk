@@ -57,8 +57,8 @@ ALTER TABLE "related" ADD FOREIGN KEY ("product2_id") REFERENCES "products" ("id
 
 ALTER TABLE "features" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
 
-ALTER TABLE "styles" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
+ALTER TABLE "styles" ADD FOREIGN KEY ("id") REFERENCES "products" ("id");
 
-ALTER TABLE "styles" ADD FOREIGN KEY ("id") REFERENCES "skus" ("styles_id");
+ALTER TABLE "styles" ADD FOREIGN KEY ("id") REFERENCES "skus" ("id");
 
-ALTER TABLE "styles" ADD FOREIGN KEY ("id") REFERENCES "photos" ("styles_id");
+ALTER TABLE "styles" ADD FOREIGN KEY ("id") REFERENCES "photos" ("id");
