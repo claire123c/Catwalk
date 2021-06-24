@@ -1,4 +1,6 @@
-var router = require('express').Router();
+const router = require('express').Router();
+const controllers = require('./controllers/controllers.js')
 
-router.get('/products');
+router.get('/*', controllers.getProducts);
 
+module.exports = router;
