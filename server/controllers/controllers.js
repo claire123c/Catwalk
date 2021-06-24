@@ -7,7 +7,7 @@ module.exports = {
     console.log(page, count);
     models.getAllProducts(page, count,(err, data) => {
       if (err) {
-        res.status(500).send(err);
+        res.status(404).send(err);
       } else {
         res.status(200).send(data);
       }

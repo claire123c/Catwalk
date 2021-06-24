@@ -1,10 +1,11 @@
--- DROP DATABASE IF EXISTS products;
+DROP DATABASE IF EXISTS products;
 
--- CREATE DATABASE products;
+CREATE DATABASE products;
 
 \c products;
 
 -- DROP TABLE IF EXISTS
+-- "products", "related";
 --   "products", "styles", "photos", "skus", "features", "related";
 
 CREATE TABLE "products" (
@@ -52,19 +53,7 @@ CREATE TABLE "related" (
   "related_product_id" int
 );
 
-INSERT INTO products VALUES (0, 'null', null, null, 'null', 'null');
-
-ALTER TABLE "related" ADD FOREIGN KEY ("current_product_id") REFERENCES "products" ("id");
-
-ALTER TABLE "related" ADD FOREIGN KEY ("related_product_id") REFERENCES "products" ("id");
-
-ALTER TABLE "features" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
-
-ALTER TABLE "styles" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
-
-ALTER TABLE "photos" ADD FOREIGN KEY ("styles_id") REFERENCES "styles" ("id");
-
-ALTER TABLE "skus" ADD FOREIGN KEY ("styles_id") REFERENCES "styles" ("id");
+--Load Data;
 
 COPY products FROM '/Users/yawnsandsmiles/SFO135/SDC/Products/data/product.csv' WITH (FORMAT csv, HEADER);
 
@@ -77,3 +66,21 @@ COPY skus FROM '/Users/yawnsandsmiles/SFO135/SDC/Products/data/skus.csv' WITH (F
 COPY features FROM '/Users/yawnsandsmiles/SFO135/SDC/Products/data/features.csv' WITH (FORMAT csv, HEADER);
 
 COPY related FROM '/Users/yawnsandsmiles/SFO135/SDC/Products/data/related.csv' WITH (FORMAT csv, HEADER);
+
+--Update Related;
+
+UPDATE "related" SET "related_product_id" = NULL WHERE "related_product_id" = 0;
+
+--Set Foreign Keys;
+
+ALTER TABLE "related" ADD FOREIGN KEY ("current_product_id") REFERENCES "products" ("id");
+
+ALTER TABLE "related" ADD FOREIGN KEY ("related_product_id") REFERENCES "products" ("id");
+
+ALTER TABLE "features" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
+
+ALTER TABLE "styles" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
+
+ALTER TABLE "photos" ADD FOREIGN KEY ("styles_id") REFERENCES "styles" ("id");
+
+ALTER TABLE "skus" ADD FOREIGN KEY ("styles_id") REFERENCES "styles" ("id");
