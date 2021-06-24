@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const db = require('../db/index.js');
-const port = 3001;
+const port = 3002;
 const router = require('./routes.js');
 
 const app = express();

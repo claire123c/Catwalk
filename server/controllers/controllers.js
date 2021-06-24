@@ -3,6 +3,7 @@ const models = require('../models/models.js')
 module.exports = {
   getProducts: (req, res) => {
     const { page, count } = req.query;
+
     models.getAllProducts(page, count,(err, data) => {
       if (err) {
         res.status(404).send(err);
