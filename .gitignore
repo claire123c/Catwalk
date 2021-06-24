@@ -1,5 +1,11 @@
 package-lock.json
 config.js
+features.csv
+photos.csv
+product.csv
+skus.csv
+styles.csv
+related.csv
 
 # Logs
 logs

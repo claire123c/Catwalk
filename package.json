@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server",
-    "seed:schema": "psql postgres < schema.sql"
+    "seed:schema": "psql < schema.sql",
+    "db": "psql products"
   },
   "repository": {
     "type": "git",
