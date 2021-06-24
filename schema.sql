@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS products;
+-- DROP DATABASE IF EXISTS products;
 
-CREATE DATABASE products;
+-- CREATE DATABASE products;
 
 \c products;
 
@@ -10,8 +10,8 @@ CREATE DATABASE products;
 CREATE TABLE "products" (
   "id" serial PRIMARY KEY,
   "name" varchar(100) NOT NULL,
-  "slogan" varchar(200) NOT NULL,
-  "description" varchar(1000) NOT NULL,
+  "slogan" varchar(200),
+  "description" varchar(1000),
   "category" varchar(20) NOT NULL,
   "default_price" varchar(10) NOT NULL
 );
@@ -52,6 +52,8 @@ CREATE TABLE "related" (
   "related_product_id" int
 );
 
+INSERT INTO products VALUES (0, 'null', null, null, 'null', 'null');
+
 ALTER TABLE "related" ADD FOREIGN KEY ("current_product_id") REFERENCES "products" ("id");
 
 ALTER TABLE "related" ADD FOREIGN KEY ("related_product_id") REFERENCES "products" ("id");
@@ -66,12 +68,12 @@ ALTER TABLE "skus" ADD FOREIGN KEY ("styles_id") REFERENCES "styles" ("id");
 
 COPY products FROM '/Users/yawnsandsmiles/SFO135/SDC/Products/data/product.csv' WITH (FORMAT csv, HEADER);
 
--- COPY styles FROM '/Users/yawnsandsmiles/SFO135/SDC/Products/data/styles.csv' WITH (FORMAT csv, HEADER);
+COPY styles FROM '/Users/yawnsandsmiles/SFO135/SDC/Products/data/styles.csv' WITH (FORMAT csv, HEADER);
 
--- COPY photos FROM '/Users/yawnsandsmiles/SFO135/SDC/Products/data/photos.csv' WITH (FORMAT csv, HEADER);
+COPY photos FROM '/Users/yawnsandsmiles/SFO135/SDC/Products/data/photos.csv' WITH (FORMAT csv, HEADER);
 
--- COPY skus FROM '/Users/yawnsandsmiles/SFO135/SDC/Products/data/skus.csv' WITH (FORMAT csv, HEADER);
+COPY skus FROM '/Users/yawnsandsmiles/SFO135/SDC/Products/data/skus.csv' WITH (FORMAT csv, HEADER);
 
--- COPY features FROM '/Users/yawnsandsmiles/SFO135/SDC/Products/data/features.csv' WITH (FORMAT csv, HEADER);
+COPY features FROM '/Users/yawnsandsmiles/SFO135/SDC/Products/data/features.csv' WITH (FORMAT csv, HEADER);
 
 COPY related FROM '/Users/yawnsandsmiles/SFO135/SDC/Products/data/related.csv' WITH (FORMAT csv, HEADER);
