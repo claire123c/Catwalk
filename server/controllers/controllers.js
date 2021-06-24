@@ -13,16 +13,13 @@ module.exports = {
   },
   getProduct: (req, res) => {
     const { product_id } = req.params;
-    console.log(product_id);
-    models.getOneProductTest(product_id, (err, data, data2) => {
+
+    models.getOneProduct(product_id, (err, productData, featureData) => {
       if (err) {
         res.status(404).send(err);
       } else {
-        console.log(data)
-        console.log(data2)
-        const copy = data2;
-        data[0].feature = copy;
-        res.status(200).send(data);
+        productData[0].feature = featureData;
+        res.status(200).send(productData);
       }
     })
   }
