@@ -93,7 +93,6 @@ CREATE INDEX on "related" ("related_product_id");
 
 CREATE INDEX on "features" ("product_id");
 
-
 CREATE INDEX on "styles" ("product_id");
 
 CREATE INDEX on "photos" ("styles_id");

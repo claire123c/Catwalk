@@ -4,6 +4,7 @@ module.exports = {
   getAllProducts: (page = 1, count = 5, callback) => {
     const query = 'SELECT * FROM products ORDER BY id LIMIT $1 OFFSET $2';
     const offset = (page - 1) * count;
+    //should I limit the count?
 
     pool.query(query, [count, offset], (err, data) => {
       if (err) {
@@ -27,6 +28,18 @@ module.exports = {
       .catch((err) => {
         callback(err);
       })
+  },
+  flatten: (arrOfObjs) => {
+    let result = [];
+    if (!Array.isArray(arrOfObjs)) {
+      return;
+    }
+    for (var i = 0; i < arrOfObjs.length; i++) {
+      for (var key in arrOfObjs[i]) {
+        result.push(arrOfObjs[i][key]);
+      }
+    }
+    return result;
   },
   getRelatedProducts: (id, callback) => {
     //::json->>"
