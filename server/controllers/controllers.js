@@ -35,6 +35,17 @@ module.exports = {
       }
     })
   },
+  getProductStyles: (req, res) => {
+    const { product_id } = req.params;
+
+    models.getStyles(product_id, (err, styleData) => {
+      if (err) {
+        res.status(404).send(err);
+      } else {
+        res.status(200).send(styleData);
+      }
+    })
+  },
   getRelated: (req, res) => {
     const { product_id } = req.params;
 
