@@ -2,7 +2,7 @@ const pool = require('../../db/index.js');
 
 module.exports = {
   getAllProducts: (page = 1, count = 5, callback) => {
-    const query = 'SELECT * FROM products ORDER BY id LIMIT $1 OFFSET $2';
+    const query = `SELECT * FROM products ORDER BY id LIMIT $1 OFFSET $2`;
     const offset = (page - 1) * count;
     //should I limit the count?
 
@@ -30,7 +30,7 @@ module.exports = {
       })
   },
   getOneProduct: (id, callback) => {
-    const query = "SELECT products.id, products.name, products.slogan, products.description, products.category, products.default_price, json_agg(json_build_object('feature', features.feature, 'value', features.value)) AS features from features INNER JOIN products ON features.product_id = products.id WHERE products.id = $1 GROUP BY products.id;";
+    const query = `SELECT products.id, products.name, products.slogan, products.description, products.category, products.default_price, json_agg(json_build_object('feature', features.feature, 'value', features.value)) AS features from features INNER JOIN products ON features.product_id = products.id WHERE products.id = $1 GROUP BY products.id;`;
 
     pool.query(query, [id])
       .then((data) => {
@@ -55,7 +55,7 @@ module.exports = {
       })
   },
   getRelatedProducts: (id, callback) => {
-    const query = 'SELECT related_product_id FROM related WHERE related.current_product_id = $1';
+    const query = `SELECT related_product_id FROM related WHERE related.current_product_id = $1`;
 
     pool.query(query, [id])
       .then((relatedData) => {
