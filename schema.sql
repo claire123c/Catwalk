@@ -84,3 +84,22 @@ ALTER TABLE "styles" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id")
 ALTER TABLE "photos" ADD FOREIGN KEY ("styles_id") REFERENCES "styles" ("id");
 
 ALTER TABLE "skus" ADD FOREIGN KEY ("styles_id") REFERENCES "styles" ("id");
+
+--create Indexes
+
+CREATE INDEX on "related" ("current_product_id");
+
+CREATE INDEX on "related" ("related_product_id");
+
+CREATE INDEX on "features" ("product_id");
+
+
+CREATE INDEX on "styles" ("product_id");
+
+CREATE INDEX on "photos" ("styles_id");
+
+CREATE INDEX on "skus" ("styles_id");
+
+
+
+

@@ -29,6 +29,7 @@ module.exports = {
       })
   },
   getRelatedProducts: (id, callback) => {
+    //::json->>"
     const query = 'SELECT related_product_id FROM related WHERE related.current_product_id = $1';
 
     pool.query(query, [id])
@@ -36,6 +37,7 @@ module.exports = {
         callback(null, relatedData.rows);
       })
       .catch((err) => {
+        console.log(err);
         callback(err);
       })
   }
