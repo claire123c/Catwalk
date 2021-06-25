@@ -29,6 +29,19 @@ module.exports = {
         callback(err);
       })
   },
+  getOneProduct2: (id, callback) => {
+    const query = 'SELECT products.id, products.name, products.slogan, products.description, products.category, products.default_price, json_agg(features.feature) AS features from features JOIN products ON features.product_id = products.id WHERE products.id = $1 GROUP BY products.id;';
+
+    pool.query(query, [id])
+      .then((data) => {
+        console.log(data.rows);
+        callback(null, data.rows)
+      })
+      .catch((err) => {
+        console.log(err);
+        callback(err);
+      })
+  },
   flatten: (arrOfObjs) => {
     let result = [];
     if (!Array.isArray(arrOfObjs)) {

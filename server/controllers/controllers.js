@@ -15,6 +15,17 @@ module.exports = {
   getProduct: (req, res) => {
     const { product_id } = req.params;
 
+    models.getOneProduct2(product_id, (err, data) => {
+      if (err) {
+        res.status(404).send(err);
+      } else {
+        res.status(200).send(data);
+      }
+    })
+  },
+  getProduct2: (req, res) => {
+    const { product_id } = req.params;
+
     models.getOneProduct(product_id, (err, productData, featureData) => {
       if (err) {
         res.status(404).send(err);
