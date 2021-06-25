@@ -14,7 +14,7 @@ module.exports = {
       }
     });
   },
-  getOneProduct: (id, callback) => {
+  getOneProductV2: (id, callback) => {
     const query1 = 'SELECT * FROM products WHERE products.id = $1';
     const query2 = 'SELECT feature, value FROM features WHERE product_id = $1';
 
@@ -29,7 +29,7 @@ module.exports = {
         callback(err);
       })
   },
-  getOneProduct2: (id, callback) => {
+  getOneProduct: (id, callback) => {
     const query = "SELECT products.id, products.name, products.slogan, products.description, products.category, products.default_price, json_agg(json_build_object('feature', features.feature, 'value', features.value)) AS features from features INNER JOIN products ON features.product_id = products.id WHERE products.id = $1 GROUP BY products.id;";
 
     pool.query(query, [id])
