@@ -43,13 +43,14 @@ module.exports = {
       })
   },
   getStyles: (id, callback) => {
-    const query = "SELECT product_id, json_agg(json_build_object('style_id', styles.id, 'name', styles.name)) AS results FROM styles WHERE product_id = $1 GROUP BY product_id";
+    const query = `SELECT product_id, json_agg(json_build_object('style_id', styles.id, 'name', styles.name, 'original_price', styles.original_price, 'sale_price', styles.sale_price, 'default?', styles."default?")) AS results FROM styles WHERE product_id = $1 GROUP BY product_id`;
 
     pool.query(query, [id])
       .then((styleData) => {
         callback(null, styleData.rows);
       })
       .catch((err) => {
+        console.log(err);
         callback(err);
       })
   },
