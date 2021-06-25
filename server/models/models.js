@@ -30,7 +30,8 @@ module.exports = {
       })
   },
   getOneProduct: (id, callback) => {
-    const query = `SELECT products.id, products.name, products.slogan, products.description, products.category, products.default_price, json_agg(json_build_object('feature', features.feature, 'value', features.value)) AS features from features INNER JOIN products ON features.product_id = products.id WHERE products.id = $1 GROUP BY products.id;`;
+    const query = `SELECT products.id, products.name, products.slogan, products.description, products.category, products.default_price, json_agg(json_build_object('feature', features.feature, 'value', features.value)) AS features FROM features INNER JOIN products ON features.product_id = products.id
+    WHERE products.id = $1 GROUP BY products.id;`;
 
     pool.query(query, [id])
       .then((data) => {
