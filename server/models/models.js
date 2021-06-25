@@ -27,5 +27,16 @@ module.exports = {
       .catch((err) => {
         callback(err);
       })
+  },
+  getRelatedProducts: (id, callback) => {
+    const query = 'SELECT related_product_id FROM related WHERE related.current_product_id = $1';
+
+    pool.query(query, [id])
+      .then((relatedData) => {
+        callback(null, relatedData.rows);
+      })
+      .catch((err) => {
+        callback(err);
+      })
   }
 }
