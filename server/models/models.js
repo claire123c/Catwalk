@@ -4,17 +4,14 @@ module.exports = {
   getAllProducts: (page = 1, count = 5, callback) => {
     const query = `SELECT * FROM products ORDER BY id LIMIT $1 OFFSET $2`;
     const offset = (page - 1) * count;
-    if (count > 1000) {
-      callback('Exceeded 1000 count');
-    } else {
-      pool.query(query, [count, offset], (err, data) => {
-        if (err) {
-          callback(err);
-        } else {
-          callback(null, data.rows);
-        }
-      });
-    }
+
+    pool.query(query, [count, offset])
+      .then((data) => {
+        callback(null, data.rows);
+      })
+      .catch((err) => {
+        callback(err);
+      })
   },
   getOneProduct: (id, callback) => {
     const query = `

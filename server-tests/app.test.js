@@ -14,6 +14,9 @@ describe('GET /products', () => {
   test('should respond with a 404 status code if count exceeds 1000', async () => {
     await request(app).get('/products/?count=1001').expect(404);
   })
+  test('should respond with a 404 status code if product not found', async () => {
+    await request(app).get('/products/?count=-1').expect(404);
+  })
   test('response with json', async () => {
     await request(app).get('/products').expect('Content-Type', /json/);
   })
@@ -63,6 +66,5 @@ describe('flatten()', () => {
   test('should return if input is not array', () => {
     const arrOfObjs = 'invalid';
     expect(flatten(arrOfObjs)).toBeUndefined();
-
   })
 })
