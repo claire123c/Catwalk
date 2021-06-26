@@ -19,6 +19,7 @@ module.exports = {
       if (err) {
         res.status(404).send(err);
       } else {
+        console.log(data);
         res.status(200).send(data);
       }
     })
