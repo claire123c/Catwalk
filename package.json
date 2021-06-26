@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest -c jest.config.js --detectOpenHandles",
     "start": "nodemon server",
     "seed:schema": "psql < schema.sql",
     "db": "psql products"
@@ -21,9 +21,16 @@
   },
   "homepage": "https://github.com/charismatic-cannolis/Products#readme",
   "dependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "babel-jest": "^27.0.5",
     "express": "^4.17.1",
     "mongoose": "^5.12.14",
     "nodemon": "^2.0.7",
     "pg": "^8.6.0"
+  },
+  "devDependencies": {
+    "jest": "^27.0.5",
+    "supertest": "^6.1.3"
   }
 }

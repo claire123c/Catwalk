@@ -4,26 +4,10 @@ module.exports = {
   getAllProducts: (page = 1, count = 5, callback) => {
     const query = `SELECT * FROM products ORDER BY id LIMIT $1 OFFSET $2`;
     const offset = (page - 1) * count;
-    //should I limit the count?
 
-    pool.query(query, [count, offset], (err, data) => {
-      if (err) {
-        callback(err);
-      } else {
+    pool.query(query, [count, offset])
+      .then((data) => {
         callback(null, data.rows);
-      }
-    });
-  },
-  getOneProductV2: (id, callback) => {
-    const query1 = 'SELECT * FROM products WHERE products.id = $1';
-    const query2 = 'SELECT feature, value FROM features WHERE product_id = $1';
-
-    pool.query(query1, [id])
-      .then((productData) => {
-        pool.query(query2, [id])
-          .then((featureData) => {
-            callback(null, productData.rows, featureData.rows)
-          })
       })
       .catch((err) => {
         callback(err);
@@ -37,11 +21,9 @@ module.exports = {
 
     pool.query(query, [id])
       .then((data) => {
-        console.log(data.rows);
         callback(null, data.rows)
       })
       .catch((err) => {
-        console.log(err);
         callback(err);
       })
   },
@@ -69,14 +51,11 @@ module.exports = {
   getRelatedProducts: (id, callback) => {
     const query = `SELECT json_agg(related_product_id) AS r FROM related WHERE related.current_product_id = $1`;
 
-    // const query = `SELECT related_product_id AS related FROM related WHERE related.current_product_id = $1`;
-
     pool.query(query, [id])
       .then((relatedData) => {
         callback(null, relatedData.rows);
       })
       .catch((err) => {
-        console.log(err);
         callback(err);
       })
   },

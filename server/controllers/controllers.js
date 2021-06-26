@@ -4,13 +4,18 @@ module.exports = {
   getProducts: (req, res) => {
     const { page, count } = req.query;
 
-    models.getAllProducts(page, count,(err, data) => {
-      if (err) {
-        res.status(404).send(err);
-      } else {
-        res.status(200).send(data);
-      }
-    })
+    if (count > 1000) {
+      res.status(404).send('Count exceeded 1000');
+    } else {
+      models.getAllProducts(page, count,(err, data) => {
+        if (err) {
+          res.status(404).send(err);
+        } else {
+          res.status(200).send(data);
+        }
+      })
+    }
+
   },
   getProduct: (req, res) => {
     const { product_id } = req.params;
@@ -19,19 +24,8 @@ module.exports = {
       if (err) {
         res.status(404).send(err);
       } else {
+        console.log(data);
         res.status(200).send(data);
-      }
-    })
-  },
-  getProductV2: (req, res) => {
-    const { product_id } = req.params;
-
-    models.getOneProductV2(product_id, (err, productData, featureData) => {
-      if (err) {
-        res.status(404).send(err);
-      } else {
-        productData[0].feature = featureData;
-        res.status(200).send(productData);
       }
     })
   },
