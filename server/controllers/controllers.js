@@ -23,18 +23,6 @@ module.exports = {
       }
     })
   },
-  getProductV2: (req, res) => {
-    const { product_id } = req.params;
-
-    models.getOneProductV2(product_id, (err, productData, featureData) => {
-      if (err) {
-        res.status(404).send(err);
-      } else {
-        productData[0].feature = featureData;
-        res.status(200).send(productData);
-      }
-    })
-  },
   getProductStyles: (req, res) => {
     const { product_id } = req.params;
 
