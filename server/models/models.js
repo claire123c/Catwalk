@@ -30,8 +30,10 @@ module.exports = {
       })
   },
   getOneProduct: (id, callback) => {
-    const query = `SELECT products.id, products.name, products.slogan, products.description, products.category, products.default_price, json_agg(json_build_object('feature', features.feature, 'value', features.value)) AS features FROM features INNER JOIN products ON features.product_id = products.id
-    WHERE products.id = $1 GROUP BY products.id;`;
+    const query = `
+    SELECT products.id, products.name, products.slogan, products.description, products.category, products.default_price, json_agg(json_build_object('feature', features.feature, 'value', features.value))AS features
+      FROM features
+      INNER JOIN products ON features.product_id = products.id WHERE products.id = $1 GROUP BY products.id;`;
 
     pool.query(query, [id])
       .then((data) => {
@@ -44,17 +46,21 @@ module.exports = {
       })
   },
   getStyles: (id, callback) => {
-    const query = ` SELECT styles.product_id, (SELECT json_agg(json_build_object('style_id', styles.id, 'name', styles.name, 'original_price', styles.original_price, 'sale_price', styles.sale_price, 'default?', styles."default?"))
+    const query = `
+    SELECT styles.product_id,
+      (SELECT json_agg(json_build_object('style_id', styles.id, 'name', styles.name, 'original_price', styles.original_price, 'sale_price', styles.sale_price, 'default?', styles."default?", 'skus', (SELECT json_object_agg(skus.id, 'hi')
+        FROM skus WHERE skus.styles_id = styles.id)))
+        FROM styles WHERE styles.product_id = $1) AS results
       FROM styles
-      WHERE styles.product_id = $1) AS results
-    FROM styles
-    WHERE styles.product_id = $1 LIMIT 1;
-;`
-    // const query = `
-    // SELECT product_id, json_build_object('style_id', styles.id, 'name', styles.name, 'original_price', styles.original_price, 'sale_price', styles.sale_price, 'default?', styles."default?") AS results
-    // FROM styles
-    // WHERE product_id = $1;`
-    //AS results, json_build_object(skus.id, 'hi') AS skusINNER JOIN skus ON styles.id = skus.styles_id
+      WHERE styles.product_id = $1 LIMIT 1;`
+
+      // const query = `
+      // SELECT styles.product_id,
+      //   (SELECT json_agg(json_build_object('style_id', styles.id, 'name', styles.name, 'original_price', styles.original_price, 'sale_price', styles.sale_price, 'default?', styles."default?", 'skus',       SELECT json_agg(skus.id)
+      //     FROM skus WHERE skus.styles_id = styles.id LIMIT 1)),
+      //     FROM styles WHERE styles.product_id = $1) AS results
+      //   FROM styles
+      //   WHERE styles.product_id = $1 LIMIT 1;`
 
     pool.query(query, [id])
       .then((styleData) => {
