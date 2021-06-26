@@ -58,31 +58,25 @@ module.exports = {
       FROM styles
       WHERE styles.product_id = $1 LIMIT 1;`
 
-      // const query = `
-      // SELECT styles.product_id,
-      //   (SELECT json_agg(json_build_object('style_id', styles.id, 'name', styles.name, 'original_price', styles.original_price, 'sale_price', styles.sale_price, 'default?', styles."default?", 'skus',       SELECT json_agg(skus.id)
-      //     FROM skus WHERE skus.styles_id = styles.id LIMIT 1)),
-      //     FROM styles WHERE styles.product_id = $1) AS results
-      //   FROM styles
-      //   WHERE styles.product_id = $1 LIMIT 1;`
-
     pool.query(query, [id])
       .then((styleData) => {
         callback(null, styleData.rows);
       })
       .catch((err) => {
-        console.log(err);
         callback(err);
       })
   },
   getRelatedProducts: (id, callback) => {
-    const query = `SELECT related_product_id FROM related WHERE related.current_product_id = $1`;
+    // const query = `SELECT json_agg(related_product_id) AS related FROM related WHERE related.current_product_id = $1`;
+
+    const query = `SELECT related_product_id AS related FROM related WHERE related.current_product_id = $1`;
 
     pool.query(query, [id])
       .then((relatedData) => {
         callback(null, relatedData.rows);
       })
       .catch((err) => {
+        console.log(err);
         callback(err);
       })
   },
