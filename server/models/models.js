@@ -69,8 +69,6 @@ module.exports = {
   getRelatedProducts: (id, callback) => {
     const query = `SELECT json_agg(related_product_id) AS r FROM related WHERE related.current_product_id = $1`;
 
-    // const query = `SELECT related_product_id AS related FROM related WHERE related.current_product_id = $1`;
-
     pool.query(query, [id])
       .then((relatedData) => {
         callback(null, relatedData.rows);
