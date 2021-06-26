@@ -8,4 +8,5 @@ To start it up:
 1. npm install
 2. Install PostgreSQL and set up database called 'products'
 3. Seed Schema: npm run seed:schema
-4. Start Server: npm start
+4. Create a .gitignored config.js file to connect to the database
+5. Start Server: npm start
