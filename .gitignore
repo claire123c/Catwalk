@@ -6,6 +6,7 @@ product.csv
 skus.csv
 styles.csv
 related.csv
+load.sh
 
 # Logs
 logs
