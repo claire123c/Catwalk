@@ -6,6 +6,8 @@ product.csv
 skus.csv
 styles.csv
 related.csv
+load.sh
+newrelic.js
 
 # Logs
 logs
