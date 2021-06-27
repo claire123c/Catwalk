@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest -c jest.config.js --detectOpenHandles",
     "start": "nodemon server",
-    "seed:schema": "psql < schema.sql",
+    "seed:schema": "psql < db/schema.sql",
     "db": "psql products"
   },
   "repository": {

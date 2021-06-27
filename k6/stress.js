@@ -2,15 +2,13 @@ import http from 'k6/http';
 import { sleep, check, group } from 'k6';
 
 export let options = {
-  vus: 100,
-  duration: '10s',
-  // stages:[
-  //   { duration: '5s', target: 1 }, //below normal
-  //   { duration: '10s', target: 10 }, //normal
-  //   { duration: '10s', target: 50 }, //around breaking point
-  //   { duration: '10s', target: 1000 }, //beyond breaking point
-  //   { duration: '10s', target: 10 }, //scale down
-  // ],
+  stages:[
+    { duration: '5s', target: 1 }, //below normal
+    { duration: '10s', target: 10 }, //normal
+    { duration: '10s', target: 1000 }, //around breaking point
+    { duration: '10s', target: 2000 }, //beyond breaking point
+    { duration: '10s', target: 50 }, //scale down
+  ],
 };
 
 const SLEEP_DURATION = 1;
@@ -50,7 +48,5 @@ export default function () {
     })
     sleep(SLEEP_DURATION);
   })
-
-
 }
 
