@@ -2,7 +2,7 @@ import http from 'k6/http';
 import { sleep, check, group } from 'k6';
 
 export let options = {
-  vus: 10,
+  vus: 100,
   duration: '10s',
   // stages:[
   //   { duration: '5s', target: 1 }, //below normal
