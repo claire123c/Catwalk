@@ -88,6 +88,7 @@ ALTER TABLE "skus" ADD FOREIGN KEY ("styles_id") REFERENCES "styles" ("id");
 --create Indexes
 
 CREATE INDEX on "related" ("current_product_id");
+-- CREATE INDEX on "related" ("current_product_id") include (*)
 
 CREATE INDEX on "related" ("related_product_id");
 

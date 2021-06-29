@@ -2,6 +2,8 @@ import http from 'k6/http';
 import { sleep, check, group } from 'k6';
 
 export let options = {
+  // vus: 100,
+  // duration: '10s',
   stages:[
     { duration: '5s', target: 1 }, //below normal
     { duration: '10s', target: 10 }, //normal
@@ -9,6 +11,10 @@ export let options = {
     { duration: '10s', target: 2000 }, //beyond breaking point
     { duration: '10s', target: 50 }, //scale down
   ],
+  thresholds: {
+    http_req_failed: ['rate<0.01'], // errors less than 1%
+    http_req_duration: ['p(95)<2000'], // 95% of requests should be under 2000ms
+  },
 };
 
 const SLEEP_DURATION = 1;
