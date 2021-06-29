@@ -7,7 +7,7 @@ module.exports = {
     if (count > 1000) {
       res.status(404).send('Count exceeded 1000');
     } else {
-      models.getAllProducts(page, count,(err, data) => {
+      models.getAllProducts(page, count, (err, data) => {
         if (err) {
           res.status(404).send(err);
         } else {

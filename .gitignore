@@ -6,7 +6,7 @@ product.csv
 skus.csv
 styles.csv
 related.csv
-load.sh
+stress.sh
 newrelic.js
 
 # Logs
