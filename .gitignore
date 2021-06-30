@@ -8,6 +8,7 @@ styles.csv
 related.csv
 stress.sh
 newrelic.js
+newrelic_agent.log
 
 # Logs
 logs
