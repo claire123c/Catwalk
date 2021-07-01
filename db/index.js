@@ -7,6 +7,10 @@ const pool = new Pool({
     database,
     password,
     port,
+}, (err, res) => {
+    if (err) {
+        console.log(err);
+    }
 });
 
 module.exports = pool;
