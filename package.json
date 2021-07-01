@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest -c jest.config.js --detectOpenHandles",
-    "start": "nodemon server",
+    "start": "node server",
     "seed:schema": "psql < db/schema.sql",
     "db": "psql products"
   },
