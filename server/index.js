@@ -1,4 +1,4 @@
-const newrelic = require('newrelic')
+// const newrelic = require('newrelic')
 const path = require('path');
 const db = require('../db/index.js');
 const port = 3002;
