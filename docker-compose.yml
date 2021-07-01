@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  database:
+    image: postgres:latest
+    container_name: sdcDB
+    port:
+      - "5432":"5432"
+    volumes:
+      - $(pwd):/src/app
