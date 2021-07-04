@@ -2,7 +2,6 @@
 
 # Index
 <details open="open">
-  <summary>Table of Contents</summary>
     <li><a href="#Summary">Summary</a></li>
     <li><a href="#Prequisites">Prequisites</a></li>
     <li><a href="#Usage">Usage</a></li>
