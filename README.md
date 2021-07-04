@@ -6,7 +6,7 @@
     <li><a href="#Summary">Summary</a></li>
     <li><a href="#Prequisites">Prequisites</a></li>
     <li><a href="#Usage">Usage</a></li>
-    <li><a href="#Module Description">Module Description</a></li>
+    <li><a href="#Module-Description">Module Description</a></li>
     <li><a href="#Tests">Tests</a></li>
     <li><a href="#Author">Author</a></li>
     <li><a href="#Acknowledgements">Acknowledgements</a></li>
