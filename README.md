@@ -35,7 +35,7 @@ npm start
 ```
 5. The server runs on PORT 3002 on default. Navigate to http://localhost:3002 to send GET requests to server.
 
-##Module Description
+## Module Description
 This backend API handles the following endpoints:
 ### GET /products
 Retrieves a list of products with optional parameters of page and count. If not specified, page defaults to 1 and count defaults to 5.
@@ -46,15 +46,15 @@ Returns the all styles available for the given product
 ### GET /products/:product_id/related
 Returns the id's of products related to the product specified.
 
-##Tests
+## Tests
 To ensure server is running properly, run:
 ```sh
 npm test
 ```
-##Author
+## Author
 Claire Chen
 
-##Acknowledgements
+## Acknowledgements
 I'd like to express my gratitude to Rob Lopez for his guidance and feedback on this project.
 
 
