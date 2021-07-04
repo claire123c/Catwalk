@@ -5,13 +5,7 @@ module.exports = {
     const query = `SELECT * FROM products ORDER BY id LIMIT $1 OFFSET $2`;
     const offset = (page - 1) * count;
 
-    pool.query(query, [count, offset])
-      .then((data) => {
-        callback(null, data.rows);
-      })
-      .catch((err) => {
-        callback(err);
-      })
+    return pool.query(query, [count, offset]);
   },
   getOneProduct: (id, callback) => {
     const query = `
@@ -19,13 +13,8 @@ module.exports = {
       FROM features
       INNER JOIN products ON features.product_id = products.id WHERE products.id = $1 GROUP BY products.id;`;
 
-    pool.query(query, [id])
-      .then((data) => {
-        callback(null, data.rows)
-      })
-      .catch((err) => {
-        callback(err);
-      })
+    return pool.query(query, [id]);
+
   },
   getStyles: (id, callback) => {
     const query = `
@@ -40,24 +29,14 @@ module.exports = {
       FROM styles
       WHERE styles.product_id = $1 LIMIT 1;`
 
-    pool.query(query, [id])
-      .then((styleData) => {
-        callback(null, styleData.rows);
-      })
-      .catch((err) => {
-        callback(err);
-      })
+    return pool.query(query, [id]);
+
   },
   getRelatedProducts: (id, callback) => {
     const query = `SELECT json_agg(related_product_id) AS r FROM related WHERE related.current_product_id = $1`;
 
-    pool.query(query, [id])
-      .then((relatedData) => {
-        callback(null, relatedData.rows);
-      })
-      .catch((err) => {
-        callback(err);
-      })
+    return pool.query(query, [id]);
+
   },
   flatten: (arrOfObjs) => {
     let result = [];

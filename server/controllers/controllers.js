@@ -7,47 +7,46 @@ module.exports = {
     if (count > 1000) {
       res.status(404).send('Count exceeded 1000');
     } else {
-      models.getAllProducts(page, count, (err, data) => {
-        if (err) {
+      models.getAllProducts(page, count)
+        .then((data) => {
+          res.status(200).send(data.rows);
+        })
+        .catch((err) => {
           res.status(404).send(err);
-        } else {
-          res.status(200).send(data);
-        }
-      })
+        })
     }
-
   },
   getProduct: (req, res) => {
     const { product_id } = req.params;
 
-    models.getOneProduct(product_id, (err, data) => {
-      if (err) {
+    models.getOneProduct(product_id)
+      .then((data) => {
+        res.status(200).send(data.rows);
+      })
+      .catch((err) => {
         res.status(404).send(err);
-      } else {
-        res.status(200).send(data);
-      }
-    })
+      })
   },
   getProductStyles: (req, res) => {
     const { product_id } = req.params;
 
-    models.getStyles(product_id, (err, styleData) => {
-      if (err) {
-        res.status(404).send(err);
-      } else {
-        res.status(200).send(styleData[0]);
-      }
-    })
+    models.getStyles(product_id)
+      .then((styleData) => {
+        res.status(200).send(styleData.rows[0]);
+      })
+      .catch((err) => {
+          res.status(404).send(err);
+      })
   },
   getRelated: (req, res) => {
     const { product_id } = req.params;
 
-    models.getRelatedProducts(product_id, (err, relatedData) => {
-      if (err) {
+    models.getRelatedProducts(product_id)
+      .then((relatedData) => {
+        res.status(200).send(models.flatten(relatedData.rows)[0]);
+      })
+      .catch((err) => {
         res.status(404).send(err);
-      } else {
-        res.status(200).send(models.flatten(relatedData));
-      }
-    })
-  }
+      })
+    }
 }
