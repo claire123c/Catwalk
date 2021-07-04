@@ -1,7 +1,7 @@
 # PROJECT CATWALK BACKEND
 
 ## Summary
-Project Catwalk is a client-facing retail web application, which consists of Product Overview, Ratings & Reviews, Questions & Answers, Related Items & Comparison. This project is the built out API to support the Front End of Project Catwalk that has been scaled up to meet the demands of production traffic. 
+Project Catwalk is a client-facing retail web application, which consists of Product Overview, Ratings & Reviews, Questions & Answers, Related Items & Comparison. This project is the built out API for the Product Overview section to support the Front End of Project Catwalk and has been scaled up to meet the demands of production traffic on AWS. 
 
 ## Prequisites
 ```sh
@@ -33,4 +33,29 @@ npm run seed:schema
 ```sh
 npm start
 ```
+5. The server runs on PORT 3002 on default. Navigate to http://localhost:3002 to send GET requests to server.
+
+##Module Description
+This backend API handles the following endpoints:
+### GET /products
+Retrieves a list of products with optional parameters of page and count. If not specified, page defaults to 1 and count defaults to 5.
+### GET /products/:product_id
+Retrieves all product level information for a specified product id.
+### GET /products/:product_id/styles
+Returns the all styles available for the given product
+### GET /products/:product_id/related
+Returns the id's of products related to the product specified.
+
+##Tests
+To ensure server is running properly, run:
+```sh
+npm test
+```
+##Author
+Claire Chen
+
+##Acknowledgements
+I'd like to express my gratitude to Rob Lopez for his guidance and feedback on this project.
+
+
 
