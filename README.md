@@ -1,5 +1,18 @@
 # PROJECT CATWALK BACKEND
 
+# Index
+<details open="open">
+  <summary>Table of Contents</summary>
+    <li><a href="#Summary">Summary</a></li>
+    <li><a href="#Prequisites">Prequisites</a></li>
+    <li><a href="#Usage">Usage</a></li>
+    <li><a href="#Module Description">Module Description</a></li>
+    <li><a href="#Tests">Tests</a></li>
+    <li><a href="#Author">Author</a></li>
+    <li><a href="#Acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
+
 ## Summary
 Project Catwalk is a client-facing retail web application, which consists of Product Overview, Ratings & Reviews, Questions & Answers, Related Items & Comparison. This project is the built out API for the Product Overview section to support the Front End of Project Catwalk and has been scaled up to meet the demands of production traffic on AWS. 
 
@@ -37,13 +50,13 @@ npm start
 
 ## Module Description
 This backend API handles the following endpoints:
-### GET /products
+#### GET /products
 Retrieves a list of products with optional parameters of page and count. If not specified, page defaults to 1 and count defaults to 5.
-### GET /products/:product_id
+#### GET /products/:product_id
 Retrieves all product level information for a specified product id.
-### GET /products/:product_id/styles
+#### GET /products/:product_id/styles
 Returns the all styles available for the given product
-### GET /products/:product_id/related
+#### GET /products/:product_id/related
 Returns the id's of products related to the product specified.
 
 ## Tests
