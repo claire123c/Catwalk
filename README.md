@@ -1,7 +1,7 @@
 # PROJECT CATWALK BACKEND
 
 # Index
-<details open="open">
+<ol>
     <li><a href="#Summary">Summary</a></li>
     <li><a href="#Prequisites">Prequisites</a></li>
     <li><a href="#Usage">Usage</a></li>
@@ -9,8 +9,7 @@
     <li><a href="#Tests">Tests</a></li>
     <li><a href="#Author">Author</a></li>
     <li><a href="#Acknowledgements">Acknowledgements</a></li>
-  </ol>
-</details>
+</ol>
 
 ## Summary
 Project Catwalk is a client-facing retail web application, which consists of Product Overview, Ratings & Reviews, Questions & Answers, Related Items & Comparison. This project is the built out API for the Product Overview section to support the Front End of Project Catwalk and has been scaled up to meet the demands of production traffic on AWS. 
