@@ -3,7 +3,7 @@
 # Index
 <ol>
     <li><a href="#Summary">Summary</a></li>
-    <li><a href="#Prequisites">Prequisites</a></li>
+    <li><a href="#Prerequisites">Prerequisites</a></li>
     <li><a href="#Usage">Usage</a></li>
     <li><a href="#Module-Description">Module Description</a></li>
     <li><a href="#Tests">Tests</a></li>
@@ -14,7 +14,7 @@
 ## Summary
 Project Catwalk is a client-facing retail web application, which consists of Product Overview, Ratings & Reviews, Questions & Answers, Related Items & Comparison. This project is the built out API for the Product Overview section to support the Front End of Project Catwalk and has been scaled up to meet the demands of production traffic on AWS. 
 
-## Prequisites
+## Prerequisites
 ```sh
 Node v14.16.0
 npm 7.16.0
